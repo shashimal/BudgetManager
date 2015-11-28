@@ -7,4 +7,6 @@ Spring MVC
 
 Hibernate
 
+Apache Velocity
+
 Elasticsearch and Kibana
