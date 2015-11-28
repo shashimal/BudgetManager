@@ -1,0 +1,69 @@
+
+#set ($layout = "WEB-INF/velocity/layout/layout.vm") 
+#set($contextPath = $link.getContextURL() )
+<div id="page-wrapper">
+   <br/>    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default"  style="margin:20px">
+                <div class="panel-heading">
+                    New Expense Sub Category
+                </div>              
+                <div class="panel-body">
+               
+                    <form commandName="expenseSubCategory" class="form-horizontal" role="form" method="post"  name="expCategoryForm" action="${contextPath}/expense-subcategory-save.html">
+                        #springBind( "expenseSubCategory.id" )
+                       <input type="hidden" name="${status.expression}" value="$!status.value" />
+                       
+                        <div class="form-group form-group-sm">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-3">
+                             	#springBind( "expenseSubCategory.expenseCategoryId" )
+                             	<select name="${status.expression}" required>
+                                #foreach($expCategory in $expenseCategories)
+                                	<option value="${expCategory.id}">$expCategory.name</option>
+                                #end
+                                </select>
+                                #foreach($error in $status.errorMessages) <b>$error</b> <br> #end
+                            </div>
+                        </div>
+                       
+                        <div class="form-group form-group-sm">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-3">
+                                #springBind( "expenseSubCategory.name" )
+                                #foreach($error in $status.errorMessages) <b>$error</b> <br> #end
+  								<input type="text" name="${status.expression}" value="$!status.value" required/>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-3">
+                                 #springBind( "expenseSubCategory.description" )
+                                  #foreach($error in $status.errorMessages) <b>$error</b> <br> #end
+  								<input type="text" name="${status.expression}" value="$!status.value" required/>
+                            </div>
+                        </div>  
+                        <div class="form-group form-group-sm">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                 <button type="submit" class="btn btn-default btn-sm" id="submitBtn">Save</button>
+                                 <button type="button" class="btn btn-default btn-sm" id="cancelBtn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {    
+
+    $('#cancelBtn').click(function() {
+    	location.href= "${contextPath}/expense-subcategory-list.html";				
+    });  
+    
+} );
+</script>
